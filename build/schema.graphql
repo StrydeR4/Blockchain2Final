@@ -1,0 +1,40 @@
+type Pool @entity(immutable: false) {
+  id: ID!
+  reserve0: BigInt!
+  reserve1: BigInt!
+  totalLiquidityEvents: BigInt!
+  totalSwaps: BigInt!
+}
+
+type Swap @entity(immutable: true) {
+  id: ID!
+  trader: Bytes!
+  tokenIn: Bytes!
+  amountIn: BigInt!
+  amountOut: BigInt!
+  timestamp: BigInt!
+}
+
+type LiquidityPosition @entity(immutable: false) {
+  id: ID!
+  provider: Bytes!
+  shares: BigInt!
+  updatedAt: BigInt!
+}
+
+type Proposal @entity(immutable: false) {
+  id: ID!
+  proposer: Bytes!
+  description: String!
+  state: String!
+  createdAt: BigInt!
+}
+
+type Vote @entity(immutable: true) {
+  id: ID!
+  proposal: Proposal!
+  voter: Bytes!
+  support: Int!
+  weight: BigInt!
+  reason: String!
+}
